@@ -1,0 +1,22 @@
+{
+  "name": "apoyo_desafio_vite",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "start": "node index.js",  
+    "server": "nodemon index.js" 
+  },
+  "dependencies": {
+    "axios": "^1.6.2",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.22",  
+    "vite": "^4.4.5"
+  }
+}
