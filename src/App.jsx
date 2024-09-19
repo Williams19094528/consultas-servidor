@@ -11,29 +11,37 @@ function App() {
   const [descripcion, setDescripcion] = useState("");
   const [posts, setPosts] = useState([]);
 
+  // Función para obtener los posts desde el backend
   const getPosts = async () => {
     const { data: posts } = await axios.get(urlBaseServer + "/posts");
     setPosts([...posts]);
   };
 
+  // Función para agregar un nuevo post
   const agregarPost = async () => {
-    const post = { titulo, url: imgSrc, descripcion };
+    const post = {
+      titulo,
+      img: imgSrc, // Cambiar de 'url' a 'img' para coincidir con el backend
+      descripcion,
+      likes: 0, // Inicializar los likes en 0
+    };
     await axios.post(urlBaseServer + "/posts", post);
     getPosts();
   };
 
-  // este método se utilizará en el siguiente desafío
+  // Función para incrementar los likes de un post
   const like = async (id) => {
     await axios.put(urlBaseServer + `/posts/like/${id}`);
     getPosts();
   };
 
-  // este método se utilizará en el siguiente desafío
+  // Función para eliminar un post
   const eliminarPost = async (id) => {
     await axios.delete(urlBaseServer + `/posts/${id}`);
     getPosts();
   };
 
+  // Llamar a getPosts cuando el componente se monte
   useEffect(() => {
     getPosts();
   }, []);
@@ -47,7 +55,7 @@ function App() {
             setTitulo={setTitulo}
             setImgSRC={setImgSRC}
             setDescripcion={setDescripcion}
-            agregarPost={agregarPost}
+            agregarPost={agregarPost} // Pasar la función para agregar posts al componente Form
           />
         </div>
         <div className="col-12 col-sm-8 px-5 row posts align-items-start">
